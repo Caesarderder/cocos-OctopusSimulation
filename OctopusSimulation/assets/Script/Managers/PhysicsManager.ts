@@ -24,7 +24,6 @@ export default class PhysicsManager extends SingletonBase<PhysicsManager> {
 
     public test()
     {
-        cc.log("Physics Test");
     }
 
     // update (dt) {}

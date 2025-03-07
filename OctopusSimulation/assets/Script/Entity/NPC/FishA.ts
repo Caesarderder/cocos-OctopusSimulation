@@ -7,23 +7,24 @@
 
 import FishBase from "./FishBase";
 
-const {ccclass, property,executeInEditMode} = cc._decorator;
+const {ccclass, property} = cc._decorator;
 
 @ccclass
-@executeInEditMode
 export default class FishA extends FishBase {
 
-
-    // LIFE-CYCLE CALLBACKS:
-
     onLoad () {
+        super.onLoad();
     }
 
     start () {
+        super.start();
 
     }
 
-    update (dt) {}
+    update (dt) {
+        super.update(dt);
+
+    }
     test()
     {
     }

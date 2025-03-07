@@ -18,4 +18,18 @@ export default class Utils {
         if(node.parent==null)return offset;
         return node.parent.convertToWorldSpaceAR(offset);
     }
+
+    public static MoveByWroldDir(node:cc.Node,worldDir:cc.Vec2)
+    {
+        let worldPos=this.GetWorldPostitions(node).add(worldDir);
+
+        if(node.parent==null)
+        {
+            node.setPosition(worldPos);
+        }
+        else
+        {
+            node.setPosition(node.parent.convertToNodeSpaceAR(worldPos));
+        }
+    }
 }

@@ -8,22 +8,28 @@
 export class EventCenter  {
 
     private static _eventCallbacks: { [key: string]: Function[] } = {};
+    private static boundCallbacks = new Map();
 
     public static subscribe(eventType: string, callback: Function, target: any) {
         if (!this._eventCallbacks[eventType]) {
             this._eventCallbacks[eventType] = [];
         }
-        this._eventCallbacks[eventType].push(callback.bind(target));
+        let boundCallback = callback.bind(target)
+        this._eventCallbacks[eventType].push(boundCallback);
+        this.boundCallbacks.set(callback,boundCallback)
     }
 
     public static unsubscribe(eventType: string, callback: Function, target: any) {
-        if (this._eventCallbacks[eventType]) {
-            const index = this._eventCallbacks[eventType].findIndex(cb => cb === callback.bind(target));
+        let boundCallback = this.boundCallbacks.get(callback);
+        if (boundCallback&&this._eventCallbacks[eventType]) 
+            { 
+            const index = this._eventCallbacks[eventType].findIndex(cb => cb === boundCallback);
             if (index > -1) {
                 this._eventCallbacks[eventType].splice(index, 1);
             }
         }
     }
+
 
     public static dispatchEvent(eventType: string, ...args: any[]) {
         if (this._eventCallbacks[eventType]) {

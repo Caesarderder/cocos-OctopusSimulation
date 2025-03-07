@@ -11,18 +11,24 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class InputManager extends SingletonBase<InputManager> {
-    private _eventCallbacks: { [key: string]: Function[] } = {};
 
-    public addListener(eventType: string, callback: Function, target: any) {
+    private _eventCallbacks: { [key: string]: Function[] } = {};
+    private boundCallbacks = new Map();
+
+    public subscribe(eventType: string, callback: Function, target: any) {
         if (!this._eventCallbacks[eventType]) {
             this._eventCallbacks[eventType] = [];
         }
-        this._eventCallbacks[eventType].push(callback.bind(target));
+        let boundCallback = callback.bind(target)
+        this._eventCallbacks[eventType].push(boundCallback);
+        this.boundCallbacks.set(callback,boundCallback)
     }
 
-    public removeListener(eventType: string, callback: Function, target: any) {
-        if (this._eventCallbacks[eventType]) {
-            const index = this._eventCallbacks[eventType].findIndex(cb => cb === callback.bind(target));
+    public unsubscribe(eventType: string, callback: Function, target: any) {
+        let boundCallback = this.boundCallbacks.get(callback);
+        if (boundCallback&&this._eventCallbacks[eventType]) 
+            { 
+            const index = this._eventCallbacks[eventType].findIndex(cb => cb === boundCallback);
             if (index > -1) {
                 this._eventCallbacks[eventType].splice(index, 1);
             }
@@ -55,17 +61,14 @@ export default class InputManager extends SingletonBase<InputManager> {
     }
     public test()
     {
-        cc.log("Input Test");
     }
 
     onKey(evt,isDown) {
-        cc.log(evt,"key dispatch!",isDown);
         this.dispatchEvent(evt.keyCode.toString(),evt,isDown);
     }
 
     onMouse(evt,isDown) {
         this.dispatchEvent('mouse',evt,isDown);
-        cc.log(evt,"mouse dispatch!",isDown);
     }
 }
 

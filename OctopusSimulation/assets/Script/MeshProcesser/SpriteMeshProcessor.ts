@@ -201,9 +201,9 @@ export default class SpriteMeshProcessor extends cc.Component {
         this.W=info.W;
     }
 
-    public MoveTarget(localPos:cc.Vec2)
+    public Move(dis:cc.Vec2)
     {
-        this.targetPivot.setPosition(localPos);
+        Utils.MoveByWroldDir(this.targetPivot,dis);
     }
 }
 
@@ -213,10 +213,17 @@ export class MeshAnimationInfo
     public K: number=1;
     public W: number=1;
 
-    constructor(a,k,w)
-    {
-        this.A=a;
-        this.K=k;
-        this.W=w;
+    constructor(a?: number, k?: number, w?: number) {
+        // 如果提供了所有参数，则使用它们
+        if (a !== undefined && k !== undefined && w !== undefined) {
+            this.A = a;
+            this.K = k;
+            this.W = w;
+        } else {
+            // 如果没有提供参数，或者只提供了部分参数，则使用默认值
+            this.A = a !== undefined ? a : 10;
+            this.K = k !== undefined ? k : 10;
+            this.W = w !== undefined ? w : 10;
+        }
     }
 }
