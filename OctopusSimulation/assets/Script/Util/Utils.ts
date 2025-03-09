@@ -13,6 +13,10 @@ export default class Utils {
         if(node.parent==null)return node.getPosition();
         return node.parent.convertToWorldSpaceAR(node.getPosition());
     }
+    public static GetLocalPostitionsByOffset(node: cc.Node,offset:cc.Vec2): cc.Vec2 {
+        if(node.parent==null)return offset;
+        return node.parent.convertToNodeSpaceAR(offset);
+    }
 
     public static GetWorldPostitionsByOffset(node: cc.Node, offset: cc.Vec2): cc.Vec2 {
         if(node.parent==null)return offset;
@@ -31,5 +35,22 @@ export default class Utils {
         {
             node.setPosition(node.parent.convertToNodeSpaceAR(worldPos));
         }
+    }
+
+    public static Random(min:number,max:number):number
+    {
+        return Math.random()*(max-min)+min;
+    }
+
+    public static RandomInt(min:number,max:number):number
+    {
+        return Math.floor(Math.random()*(max-min))+min;
+    }
+
+    public static BodyToScale(body:number):number
+    {
+        //0.1  
+        //scale:0.4~5
+        return 0.4+body*0.2;
     }
 }

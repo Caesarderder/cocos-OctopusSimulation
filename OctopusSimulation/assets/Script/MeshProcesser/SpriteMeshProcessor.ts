@@ -20,6 +20,10 @@ export default class SpriteMeshProcessor extends cc.Component {
     K: number=1;
     @property
     W: number=1;
+    @property
+    color1: cc.Color=cc.Color.RED;
+    @property
+    color2: cc.Color=cc.Color.RED;
 
     density: number=1;
     verticesCount: number;
@@ -104,6 +108,11 @@ export default class SpriteMeshProcessor extends cc.Component {
         let deltaLen=len/this.density;
         let dirY:cc.Vec2=cc.Vec2.ZERO;
         let dirX:cc.Vec2=cc.Vec2.ZERO;
+
+
+        this.A = 2 - 1 * len / 1000;
+        if(this.A<0.4)
+            this.A=0.4;
         
         dirY=targetPivotPos.subtract(startPivotPos).normalize();
         dirX=cc.v2(-dirY.y,dirY.x).normalize();
@@ -135,14 +144,13 @@ export default class SpriteMeshProcessor extends cc.Component {
             let uintVData = this.renderData.uintVDatas[0];
             if(i%2==0)
             {
-                uintVData[index * this.step + 4] = cc.Color.RED['_val'];
-                uintVData[index * this.step + 9] = cc.Color.RED['_val'];
+                uintVData[index * this.step + 4] = this.color1['_val'];
+                uintVData[index * this.step + 9] = this.color2['_val'];
             }
             else
             {
-
-                uintVData[index * this.step + 4] = cc.Color.BLUE['_val'];
-                uintVData[index * this.step + 9] = cc.Color.BLUE['_val'];
+                uintVData[index * this.step + 4] = this.color2['_val'];
+                uintVData[index * this.step + 9] = this.color1['_val'];
             }
 
             //设置三角形顶点索引

@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "snake",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 30,
+  "speed": 0.32,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "1f68bdb2-52f7-4a61-b3c0-1e8ebd7485b9"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "4e3ab29d-bcf7-4012-822a-9dfeb78b9766"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "16b9760e-c6eb-4bd8-990f-0f78ede7ef63"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "f70cc873-c1ab-461d-ad14-56c67839d933"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "5cfeef86-8fe5-49c1-9de0-d73a94ded255"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "20f09e1c-8b9a-4bd2-8e6f-9853423fe8f2"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

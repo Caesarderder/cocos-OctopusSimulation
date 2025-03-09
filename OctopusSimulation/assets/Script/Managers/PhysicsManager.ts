@@ -16,6 +16,7 @@ export default class PhysicsManager extends SingletonBase<PhysicsManager> {
     {
         PhysicsManager.Instance=this;
         cc.director.getPhysicsManager().enabled=true;
+        cc.director.getCollisionManager().enabled=true;
     }
 
     start () {

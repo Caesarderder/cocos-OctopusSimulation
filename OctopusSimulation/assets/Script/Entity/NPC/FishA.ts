@@ -5,6 +5,7 @@
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 
+import InputManager from "../../Managers/InputManager";
 import FishBase from "./FishBase";
 
 const {ccclass, property} = cc._decorator;
@@ -18,14 +19,12 @@ export default class FishA extends FishBase {
 
     start () {
         super.start();
-
     }
 
     update (dt) {
         super.update(dt);
 
     }
-    test()
-    {
+    test() {
     }
 }
